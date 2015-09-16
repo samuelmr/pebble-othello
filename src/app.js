@@ -2,6 +2,16 @@ var UI = require('ui');
 var Vector2 = require('vector2');
 var Settings = require('settings');
 
+var wsUrl = 'localhost:8080/';
+var ws = new WebSocket(wsUrl);
+ws.onopen = function (event) {
+  console.log(this);
+  this.send("Here's some text that the server is urgently awaiting!"); 
+};
+ws.onmessage = function (event) {
+  console.log('Websocket msg: ' + event.data);
+}
+
 var rectSize = new Vector2(18, 18);
 var countSize = new Vector2(20, 20);
 
